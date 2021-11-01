@@ -1,8 +1,15 @@
+import 'package:amin_demo/log_in.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_drawer/slide_drawer.dart';
+
 void main() {
   runApp(AmarApp());
 }
+
+double conHeight=50;
+double conWidth=50;
+
 class AmarApp extends StatelessWidget {
   const AmarApp({Key? key}) : super(key: key);
 
@@ -10,11 +17,12 @@ class AmarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SlideDrawer(
-        offsetFromRight: 320,
-        duration: Duration(milliseconds: 2000),
+        offsetFromRight: 150,
+        duration: Duration(milliseconds: 20),
         headDrawer: Container(
           height: 200,
-          child: Image.network(("https://pixabay.com/photos/lotus-flower-lily-pad-pond-1205631/")),
+          child: Image.network("https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__480.jpg",
+            fit: BoxFit.fitWidth,),
         ),
         backgroundColor: Colors.blue,
         items: [
@@ -34,7 +42,7 @@ class AmarApp extends StatelessWidget {
               icon: Icons.ac_unit,
           onTap: (){}),
         ],
-        child: AmarHomePage(),
+        child: Login(),
       ),
     );
   }
@@ -59,6 +67,32 @@ class _AmarHomePageState extends State<AmarHomePage> {
         ),
         centerTitle: true,
         title: Text("First App"),
+      ),
+      body: Column(
+        children: [
+
+          InkWell(
+            onTap: () {
+              setState(() {
+                conHeight=150;
+                conWidth=150;
+              });
+            },
+            onDoubleTap:() {
+              setState(() {
+                conHeight=15;
+                conWidth=150;
+              });
+            },
+            child: AnimatedContainer(
+              height: conHeight ,
+                width: conWidth ,
+              color: Colors.greenAccent,
+              duration: Duration(milliseconds: 4000),
+
+            ),
+          )
+        ],
       ),
     );
   }
