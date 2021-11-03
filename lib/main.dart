@@ -1,3 +1,4 @@
+import 'package:amin_demo/demo_page.dart';
 import 'package:amin_demo/log_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,14 @@ double conHeight=50;
 double conWidth=50;
 
 class AmarApp extends StatelessWidget {
-  const AmarApp({Key? key}) : super(key: key);
+   AmarApp({Key? key}) : super(key: key);
+
+  final navigatorKey=GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       home: SlideDrawer(
         offsetFromRight: 150,
         duration: Duration(milliseconds: 20),
@@ -29,9 +33,13 @@ class AmarApp extends StatelessWidget {
           MenuItem('Home',
               icon: Icons.account_balance_sharp,
               onTap: (){}),
-          MenuItem('Project',
+          MenuItem('demo Page',
               icon: Icons.visibility,
-              onTap: (){}),
+              onTap: (){
+            navigatorKey.currentState!.push(
+              MaterialPageRoute(builder: (context)=>DemoPage())
+            );
+              }),
           MenuItem('Favourite',
               icon: Icons.account_balance,
               onTap: (){}),
@@ -70,6 +78,14 @@ class _AmarHomePageState extends State<AmarHomePage> {
       ),
       body: Column(
         children: [
+          ElevatedButton(
+              onPressed: (){
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=>DemoPage()));
+              },
+
+              child: Text("Go To Sign In")
+          ),
 
           InkWell(
             onTap: () {

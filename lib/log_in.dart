@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -26,8 +27,8 @@ class _LoginState extends State<Login> {
 
               image: DecorationImage(
                 image: AssetImage("assets/image/icon.png")
-              )
-
+              ),
+              borderRadius: BorderRadius.circular(170)
             ),
           )
         ],
