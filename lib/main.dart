@@ -1,4 +1,5 @@
 import 'package:amin_demo/demo_page.dart';
+import 'package:amin_demo/list_page.dart';
 import 'package:amin_demo/log_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,7 @@ class AmarApp extends StatelessWidget {
               icon: Icons.ac_unit,
           onTap: (){}),
         ],
-        child: Login(),
+        child: AmarHomePage(),
       ),
     );
   }
@@ -81,7 +82,8 @@ class _AmarHomePageState extends State<AmarHomePage> {
           ElevatedButton(
               onPressed: (){
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context)=>DemoPage()));
+                    MaterialPageRoute(builder:
+                        (context)=>listPage()));
               },
 
               child: Text("Go To Sign In")
