@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
 
-class listPage extends StatefulWidget {
-  const listPage({Key? key}) : super(key: key);
+import 'package:amin_demo/demo_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+class ListPage extends StatefulWidget {
+  const ListPage({Key? key}) : super(key: key);
 
   @override
-  _listPageState createState() => _listPageState();
+  _ListPageState createState() => _ListPageState();
 }
+
 List <String> stdList=[
   "Alamin",
   "Dipto",
@@ -14,10 +17,10 @@ List <String> stdList=[
   "Alamin",
   "Dipto",
   "Tamjid",
-  "Rafi"
+  "Rafi",
 ];
 
-class _listPageState extends State<listPage> {
+class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,22 +31,29 @@ class _listPageState extends State<listPage> {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: stdList.length,
-                itemBuilder: (context,index) {
+                itemCount: stdList.length,
+                itemBuilder: (context,index){
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      color: Colors.deepPurple,
-                      height: 50,
-                      width: 150,
-                      child: Text(stdList[index],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.lime,
-                        fontWeight: FontWeight.bold,fontSize: 30),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder:
+                                (context)=>DemoPage()));
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 180,
+                        color: Colors.greenAccent,
+                        child: Text(stdList[index],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.red,
+                              fontWeight: FontWeight.bold,fontSize: 30),),
                       ),
                     ),
                   );
-                }),
+                }
+            ),
           )
         ],
       ),

@@ -1,99 +1,109 @@
+
+import 'package:amin_demo/demo_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-String _email= "alaminrafi9521@gmaiil.com";
+String _email= "suha@gmail.com";
 String _password= "1234";
-final _formKey=GlobalKey<FormState>();
+final  _formKey=GlobalKey<FormState>();
 
-
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class LogIn extends StatefulWidget {
+  const LogIn({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  _LogInState createState() => _LogInState();
 }
 
-class _LoginState extends State<Login> {
+class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: Text("Log In Page"),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        color: Colors.blue,
+        height: MediaQuery.of(context).size.height,
+        color: Colors.yellow.shade100,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(18.0),
           child: Form(
             key: _formKey,
-            child: Column(
-              children: [
-                Container(
-                  height: 200,
-                  width: 200,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
 
-                decoration: BoxDecoration(
-
-                  image: DecorationImage(
-                    image: AssetImage("assets/image/icon.png")
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/iconb.png")
+                        ),
+                        borderRadius: BorderRadius.circular(180)
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(170)
-                ),
-              ),
-            TextFormField(
-              validator: (text){
-                if(text==null || text.isEmpty){
-                  return "This field is empty";
-                }
-              },
-              cursorColor: Colors.black54,
-              decoration: InputDecoration(
-                suffix: Icon(Icons.email),
-                hintText: "Enter Your Email",
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Colors.black54)
-                )
-
-              ),
-
-      ),
-                SizedBox(height: 30,),
-                TextFormField(
-                  validator: (text){
-                    if(text==null || text.isEmpty){
-                      return "This field is empty";
-                    }
-                  },
-                  cursorColor: Colors.black54,
-                  decoration: InputDecoration(
-                      suffix: Icon(Icons.remove_red_eye),
-                      hintText: "Enter Your Password",
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: Colors.black54)
-                      )
-
+                  SizedBox(
+                    height: 20,
                   ),
-
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(onPressed: (){
-                  _formKey.currentState!.validate();
-                },
-                    child: Text("Log In")
-                ),
-              ],
-      ),
+                  TextFormField(
+                    validator: (text){
+                      if(text==null || text.isEmpty){
+                        return "This field is empty";
+                      }
+                      else if(text!=_email){
+                        return "Please enter correct email";
+                      }
+                    },
+                    cursorColor: Colors.purple,
+                    decoration: InputDecoration(
+                        suffix: Icon(Icons.email),
+                        hintText: "Enter Your Email",
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: Colors.purple)
+                        )
+                    ),
+                  ),
+                  SizedBox(height: 26,),
+                  TextFormField(
+                    validator: (text){
+                      if(text==null || text.isEmpty){
+                        return "This field is empty";
+                      }
+                      else if(text!=_password){
+                        return "Please enter correct password";
+                      }
+                    },
+                    obscureText: true,
+                    cursorColor: Colors.purple,
+                    decoration: InputDecoration(
+                        suffix: Icon(Icons.remove_red_eye_rounded),
+                        hintText: "Enter Your Password",
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: Colors.purple)
+                        )
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: (){
+                        if( _formKey.currentState!.validate()){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context)
+                              =>DemoPage()));
+                        }
+                      },
+                      child: Text("Log In")
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-
-
